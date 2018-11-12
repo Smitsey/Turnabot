@@ -444,6 +444,7 @@ client.on("message", async message => {
 	if (command === "time"){
 		var tijd = Date();
 		message.channel.send(`${tijd}`);
+	}
 });
 
 client.login(process.env.BOT_TOKEN);
