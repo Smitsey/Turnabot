@@ -440,6 +440,10 @@ client.on("message", async message => {
     if (command === "reload") {
         message.delete().catch(O_o => { });
     }
+	
+	if (command === "time"){
+		var tijd = Date();
+		message.channel.send(`${tijd}`);
 });
 
 client.login(process.env.BOT_TOKEN);
