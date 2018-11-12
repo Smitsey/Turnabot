@@ -4,7 +4,7 @@ const config = require("./config.json");
 
 client.on("ready", () => {
     console.log("I am ready, master.");
-    client.user.setActivity("RLCS World Championships", { type: 'WATCHING' });
+    client.user.setActivity("RLCS World Championship", { type: 'WATCHING' });
 });
 
 // RPS-Extra
@@ -173,7 +173,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti"].includes(r.name)) && (!message.author.username === "Smitsey")) {
+        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         } else {
             // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
@@ -383,13 +383,13 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti"].includes(r.name)) && (!message.author.username === "Smitsey")) {
+        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
 
         if (!deleteCount || deleteCount < 1 || deleteCount > 100)
-            return message.reply("please provide a number between 1 and 100 of messages to delete");
+            return message.reply("please provide a number between 1 and 100 of messages to delete.");
 
         const fetched = await message.channel.fetchMessages({ limit: deleteCount + 1 });
         message.channel.bulkDelete(fetched)
@@ -421,7 +421,7 @@ client.on("message", async message => {
         })
     }
     if (command === "live") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name)) && (!message.author.username === "Smitsey")) {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         var fs = require("fs");
@@ -436,6 +436,9 @@ client.on("message", async message => {
             return message.reply("you're not on the streamerslist yet, tag or pm a moderator to get added to the list!")
         }
 
+    }
+    if (command === "reload") {
+        message.delete().catch(O_o => { });
     }
 });
 
