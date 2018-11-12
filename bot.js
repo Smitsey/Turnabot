@@ -5,6 +5,7 @@ const config = require("./config.json");
 client.on("ready", () => {
     console.log("I am ready, master.");
     client.user.setActivity("RLCS World Championships", { type: 'WATCHING' });
+});
 
 // RPS-Extra
 var players = [];
