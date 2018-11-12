@@ -1,0 +1,1 @@
+cd C:\Users\11602195\Documents\Turnabot && node bot.js
