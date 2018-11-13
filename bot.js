@@ -442,7 +442,7 @@ client.on("message", async message => {
     }
 	
 	if (command === "time"){
-		var tijd = Date();
+		var tijd = new Date();
 		var tijd = tijd.toDateString();
 		message.channel.send(`${tijd}`);
 	}
