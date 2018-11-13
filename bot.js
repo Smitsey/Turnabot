@@ -443,7 +443,7 @@ client.on("message", async message => {
 	
 	if (command === "time"){
 		var tijd = Date();
-		message.channel.send(`${tijd}`);
+		message.channel.send(`${tijd.toDateString()}`);
 	}
 });
 
