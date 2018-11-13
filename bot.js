@@ -442,9 +442,24 @@ client.on("message", async message => {
     }
 	
 	if (command === "time"){
-		var tijd = new Date();
-		var tijd = tijd.toDateString();
-		message.channel.send(`${tijd}`);
+		var datum = new Date();
+        var hours = datum.getHours();
+        var minutes = datum.getMinutes();
+        var seconds = datum.getSeconds();
+
+        if (hours < 10){
+            hours = "0" + hours;
+        }
+
+        if (minutes < 10){
+            minutes = "0" + minutes;
+        }
+
+        if (seconds < 10){
+            seconds = "0" + seconds;
+        }
+
+		message.channel.send("It is: " + hours + ":" + minutes + ":" + seconds);
 	}
 });
 
