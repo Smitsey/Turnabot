@@ -439,7 +439,7 @@ client.on("message", async message => {
     }
 	
 	if (command === "time"){
-		var datum = new Date();
+		var date = new Date();
         var hours = datum.getHours();
         var minutes = datum.getMinutes();
         var seconds = datum.getSeconds();
