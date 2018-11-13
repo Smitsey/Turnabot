@@ -465,9 +465,14 @@ client.on("message", async message => {
 	    var verschil = (kerst - datum) / 86400000;
 
 	    if (verschil > 0){
-            message.channel.send("Only: " + Math.abs(verschil) + " Day(s) left until Christmas Eve!");
+	        if (Math.round(Math.abs(verschil)) == 0){
+	            message.channel.send("Christmas Eve is today!");
+            }else{
+                message.channel.send("Only: " + Math.round(Math.abs(verschil)) + " Day(s) left until Christmas Eve!");
+            }
+
         }else{
-	        message.channel.send("It has been: " + Math.abs(verschil) + " Day(s) since Christmas Eve 2018.");
+	        message.channel.send("It has been: " + Math.round(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
         }
 
     }
