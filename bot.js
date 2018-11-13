@@ -440,9 +440,9 @@ client.on("message", async message => {
 	
 	if (command === "time"){
 		var date = new Date();
-        var hours = datum.getHours();
-        var minutes = datum.getMinutes();
-        var seconds = datum.getSeconds();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
 
         if (hours < 10){
             hours = "0" + hours;
