@@ -118,7 +118,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".purge",
-                            value: "Removes all messages from all users in the channel, up to 100.\nUsage: .purge 42\n\u200b"
+                            value: "Removes up to 100 messages from all users in the channel.\nUsage: .purge 42\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
