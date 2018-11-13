@@ -468,11 +468,11 @@ client.on("message", async message => {
 	        if (Math.round(Math.abs(verschil)) == 0){
 	            message.channel.send("Christmas Eve is today!");
             }else{
-                message.channel.send("Only: " + Math.floor(Math.abs(verschil)) + " Day(s) left until Christmas Eve!");
+                message.channel.send("Only: " + Math.ceil(Math.abs(verschil)) + " Day(s) left until Christmas Eve!");
             }
 
         }else{
-	        message.channel.send("It has been: " + Math.floor(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
+	        message.channel.send("It has been: " + Math.ceil(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
         }
 
     }
