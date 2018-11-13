@@ -427,9 +427,9 @@ client.on("message", async message => {
         var fs = require("fs");
         var liveList = fs.readFileSync("./liveList.txt", { "encoding": "utf-8" });
 
-        if (liveList.indexOf(`${message.author.username}`) != -1) {
+        if (liveList.indexOf(`${message.author.id}`) != -1) {
             message.delete().catch(O_o => { });
-            var link = liveList.split(`${message.author.username}!`)[1].split(" ")[0];
+            var link = liveList.split(`${message.author.id}!`)[1].split(";")[0];
             message.channel.send(`**${message.author.username}** just went live! ${link}`);
             console.log(`${message.author.username} just went live!`);
         } else {
