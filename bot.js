@@ -437,9 +437,6 @@ client.on("message", async message => {
         }
 
     }
-    if (command === "reload") {
-        message.delete().catch(O_o => { });
-    }
 	
 	if (command === "time"){
 		var datum = new Date();
@@ -461,6 +458,19 @@ client.on("message", async message => {
 
 		message.channel.send("It is: " + hours + ":" + minutes + ":" + seconds);
 	}
+
+	if (command === "christmas"){
+	    var datum = new Date();
+	    var kerst = new Date("12/24/2018");
+	    var verschil = (kerst - datum) / 86400000;
+
+	    if (verschil > 0){
+            message.channel.send("Only: " + Math.abs(verschil) + " Day(s) left until Christmas Eve!");
+        }else{
+	        message.channel.send("It has been: " + Math.abs(verschil) + " Day(s) since Christmas Eve 2018.");
+        }
+
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
