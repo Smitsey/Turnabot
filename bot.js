@@ -88,8 +88,8 @@ client.on('messageReactionAdd', (reaction, user) => {
                             icon_url: "https://i.imgur.com/x9vHs9f.png"
                         },
                         fields: [{
-                            name: "\u200b\n.live",
-                            value: "Promote your stream!\n\u200b"
+                            name: "\u200b\nNo commands so far!",
+                            value: "Check back later.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -420,7 +420,7 @@ client.on("message", async message => {
             helpMessage = newMessage
         })
     }
-    if (command === "live") {
+    /*if (command === "live") {
         if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
@@ -436,7 +436,7 @@ client.on("message", async message => {
             return message.reply("you're not on the streamerslist yet, tag or pm a moderator to get added to the list!")
         }
 
-    }
+    }*/
 	if (command === "time"){
 		var date = new Date();
         var hours = date.getHours();
