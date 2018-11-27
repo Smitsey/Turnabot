@@ -69,6 +69,10 @@ client.on('messageReactionAdd', (reaction, user) => {
                         {
                             name: ".role",
                             value: "Adds or removes one of the possible roles, .role for more info.\nUsage: .role add|del role\n\u200b"
+                        },
+                        {
+                            name: ".react",
+                            value: "Reacts with input to the latest message.\nUsage: .react Great\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -444,6 +448,8 @@ client.on("message", async message => {
             .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: .rps r|p|s or rock|paper|scissors\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
             .addField(".role", "Adds or removes one of the possible roles, .role for more info.\nUsage: .role add|del role\n\u200b")
+            .addField(".react", "Reacts with input to the latest message.\nUsage: .react Great\n\u200b")
+
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
             await newMessage.react('1⃣')
@@ -453,23 +459,6 @@ client.on("message", async message => {
             helpMessage = newMessage
         })
     }
-    /*if (command === "live") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
-            return message.reply("you don't have permission to use this command!");
-        }
-        var fs = require("fs");
-        var liveList = fs.readFileSync("./liveList.txt", { "encoding": "utf-8" });
-
-        if (liveList.indexOf(`${message.author.id}`) != -1) {
-            message.delete().catch(O_o => { });
-            var link = liveList.split(`${message.author.id}!`)[1].split(";")[0];
-            message.channel.send(`**${message.author.username}** just went live! ${link}`);
-            console.log(`${message.author.username} just went live!`);
-        } else {
-            return message.reply("you're not on the streamerslist yet, tag or pm a moderator to get added to the list!")
-        }
-
-    }*/
 	if (command === "time"){
 		var date = new Date();
         var hours = date.getHours();
