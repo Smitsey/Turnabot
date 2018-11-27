@@ -7,6 +7,35 @@ client.on("ready", () => {
     client.user.setActivity(".help", { type: 'PLAYING' });
 });
 
+// Useful functions
+{
+    function capitalize_Words(str) { // Capitalize first letter of every word (f.i. "test text" > "Test Text")
+        return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    }
+    function removeDuplicates(arr) {
+        var seen = {};
+        var ret_arr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (!(arr[i] in seen)) {
+                ret_arr.push(arr[i]);
+                seen[arr[i]] = true;
+            }
+        }
+        return ret_arr;
+    }
+    function alphabetPosition(text) { // Converts every char of string in it's indexnumber in the alphabet
+        var result = "";
+        for (var i = 0; i < text.length; i++) {
+            var code = text.toUpperCase().charCodeAt(i)
+            if (code > 64 && code < 91) result += (code - 64) + " ";
+        }
+        return result.slice(0, result.length - 1);
+    }
+}
+
+// Last 2 messages array
+var lastMessages = [];
+
 // RPS-Extra
 var players = [];
 var materials = [];
@@ -157,13 +186,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 })
 
 client.on("message", async message => {
+    if (lastMessages.length === 2) {
+        lastMessages.splice(0, 1);
+        lastMessages.push(message);
+    } else {
+        lastMessages[0] = message;
+        lastMessages[1] = message;
+    }
+
     if (!message.content.startsWith(config.prefix) || message.author.bot) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-
-    function capitalize_Words(str) {
-        return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-    }
 
     if (command === "ping") {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
@@ -473,6 +506,22 @@ client.on("message", async message => {
 	        message.channel.send("It has been: " + Math.ceil(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
         }
 
+    }
+    if (command === "react") {
+        let messageToReactOn = lastMessages[0];
+        let reactionWord = args.slice(0).join(" ").toLowerCase();
+        lastMessages[1] = lastMessages[0];
+        message.delete().catch(O_o => { });
+        if (reactionWord.indexOf(' ') >= 0) {
+            return message.reply("input can't be multiple words.");
+        }
+        var reactionNumbers = alphabetPosition(reactionWord).split(' ');
+        reactionNumbers = removeDuplicates(reactionNumbers).map(Number);
+
+        var emoji = 127461; // One before indicator emojis start
+        for (var i = 0; i < reactionNumbers.length; i++) {
+            await messageToReactOn.react(String.fromCodePoint(emoji + reactionNumbers[i]));
+        }
     }
 });
 
