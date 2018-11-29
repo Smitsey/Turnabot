@@ -501,9 +501,6 @@ client.on("message", async message => {
         let reactionWord = args.slice(0).join(" ").toLowerCase();
         lastMessages[1] = lastMessages[0];
         message.delete().catch(O_o => { });
-        if (reactionWord.indexOf(' ') >= 0) {
-            return message.reply("input can't be multiple words.");
-        }
         var reactionNumbers = alphabetPosition(reactionWord).split(' ');
         reactionNumbers = removeDuplicates(reactionNumbers).map(Number);
 
