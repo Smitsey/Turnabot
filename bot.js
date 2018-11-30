@@ -231,7 +231,10 @@ client.on("message", async message => {
             return message.reply(`use the poll-command like this:\n.poll question; option 1; option 2 etc..\nLeave options blank for a yes or no question.`)
         }
 
-        const pollQuestion = args.join(" ");
+        let pollQuestion = args.join(" ");
+        if (pollQuestion.includes("@everyone") && !message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+            pollQuestion = pollQuestion.replace(/@everyone/g, 'everyone');
+        }
         const pollOptions = pollQuestion.substring(pollQuestion.indexOf(`;`) + 1);
 
         // Multiple-choice
