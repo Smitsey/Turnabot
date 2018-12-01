@@ -552,7 +552,7 @@ client.on("message", async message => {
             .setTitle(live.getLink())
             .setURL(live.getLink())
             .setThumbnail(message.author.avatarURL)
-            .setImage(live.getImage)
+            .setImage(live.getImage())
             .addField("Playing:", game)
             .addField("Started at:", getTime())
             .setColor(6570404)
