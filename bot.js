@@ -1,6 +1,7 @@
 ﻿const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const live = require("./live.js");
 
 client.on("ready", () => {
     console.log("I am ready, master.");
@@ -30,6 +31,28 @@ client.on("ready", () => {
             if (code > 64 && code < 91) result += (code - 64) + " ";
         }
         return result.slice(0, result.length - 1);
+    }
+    function getTime() { // Returns date and time with format: Month D, YYYY HH:MM AM/PM
+        let date = new Date();
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let dayHalf = "AM";
+
+        if (hours > 11) {
+            dayHalf = "PM";
+        }
+        if (hours > 12) {
+            hours = hours - 12;
+        }
+        if (hours < 10) {
+            hours = "0" + hours;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+
+        return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hours + ":" + minutes + dayHalf;
     }
 }
 
@@ -511,6 +534,29 @@ client.on("message", async message => {
         for (var i = 0; i < reactionNumbers.length; i++) {
             await messageToReactOn.react(String.fromCodePoint(emoji + reactionNumbers[i]));
         }
+    }
+    if (command === "live") {
+        let game = args.slice(0).join(" ");
+        game = capitalize_Words(game);
+        live.setUser(message.author.id);
+
+        if (game === "") {
+            game = live.getDefaultGame();
+        }
+
+        const embed = new Discord.RichEmbed()
+            .setAuthor(`${live.getUsername()} just went live on ${live.getPlatform()}!`)
+            .setTitle(live.getLink())
+            .setURL(live.getLink())
+            .setThumbnail(message.author.avatarURL)
+            .setImage(live.getImage)
+            .addField("Playing:", game)
+            .addField("Started at:", getTime())
+            .setColor(6570404)
+            .setFooter(live.getUsername() + " • " + getTime())
+
+
+        message.channel.send(embed);
     }
 });
 
