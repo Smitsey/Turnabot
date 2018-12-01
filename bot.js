@@ -536,6 +536,9 @@ client.on("message", async message => {
         }
     }
     if (command === "live") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
         let game = args.slice(0).join(" ");
         game = capitalize_Words(game);
         live.setUser(message.author.id);
