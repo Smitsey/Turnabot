@@ -144,8 +144,8 @@ client.on('messageReactionAdd', (reaction, user) => {
                             icon_url: "https://i.imgur.com/x9vHs9f.png"
                         },
                         fields: [{
-                            name: "\u200b\nNo commands so far!",
-                            value: "Check back later.\n\u200b"
+                            name: "\u200b\n.live",
+                            value: "Let people know you're livestreaming right now!\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
