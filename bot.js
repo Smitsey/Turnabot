@@ -542,6 +542,7 @@ client.on("message", async message => {
         let game = args.slice(0).join(" ");
         game = capitalize_Words(game);
         live.setUser(message.author.id);
+        message.delete().catch(O_o => { });
 
         if (game === "") {
             game = live.getDefaultGame();
