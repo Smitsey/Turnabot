@@ -35,7 +35,7 @@ client.on("ready", () => {
     function getTime() { // Returns date and time with format: Month D, YYYY HH:MM AM/PM
         let date = new Date();
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let hours = date.getHours();
+        let hours = date.getHours() + 1; // +1 to make it CET
         let minutes = date.getMinutes();
         let dayHalf = "AM";
 
@@ -554,7 +554,7 @@ client.on("message", async message => {
             .setThumbnail(message.author.avatarURL)
             .setImage(live.getImage())
             .addField("Playing:", game)
-            .addField("Started at:", getTime())
+            .addField("Started at (CET Time):", getTime())
             .setColor(6570404)
             .setFooter(live.getUsername() + " • " + getTime())
 
