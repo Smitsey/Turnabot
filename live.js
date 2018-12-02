@@ -59,7 +59,9 @@ module.exports = {
     // Platform
     setPlatform: function (p) {
         fs.unlinkSync(`./LiveUsers/${username}/platform.txt`);
-        fs.writeFile(`./LiveUsers/${username}/platform.txt`, p);
+        fs.writeFile(`./LiveUsers/${username}/platform.txt`, p, (err) => {
+            if (err) throw err;
+        });
     },
     getPlatform: function () {
         return platform;
@@ -68,7 +70,9 @@ module.exports = {
     // Link
     setLink: function (l) {
         fs.unlinkSync(`./LiveUsers/${username}/link.txt`);
-        fs.writeFile(`./LiveUsers/${username}/link.txt`, l);
+        fs.writeFile(`./LiveUsers/${username}/link.txt`, l, (err) => {
+            if (err) throw err;
+        });
     },
     getLink: function () {
         return link;
@@ -77,7 +81,9 @@ module.exports = {
     // Default Game
     setDefaultGame: function (dg) {
         fs.unlinkSync(`./LiveUsers/${username}/defaultGame.txt`);
-        fs.writeFile(`./LiveUsers/${username}/defaultGame.txt`, dg);
+        fs.writeFile(`./LiveUsers/${username}/defaultGame.txt`, dg, (err) => {
+            if (err) throw err;
+        });
     },
     getDefaultGame: function () {
         return defaultGame;
@@ -86,7 +92,9 @@ module.exports = {
     // Image
     setImage: function (i) {
         fs.unlinkSync(`./LiveUsers/${username}/image.txt`);
-        fs.writeFile(`./LiveUsers/${username}/image.txt`, i);
+        fs.writeFile(`./LiveUsers/${username}/image.txt`, i, (err) => {
+            if (err) throw err;
+        });
     },
     getImage: function () {
         return image;
