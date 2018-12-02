@@ -539,6 +539,10 @@ client.on("message", async message => {
         if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
+        if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
+            return message.reply("you're not yet on the list, contact <@125280288799588352> to get added to it!")
+        }
+
         let game = args.slice(0).join(" ");
         game = capitalize_Words(game);
         live.setUser(message.author.id);
@@ -561,6 +565,69 @@ client.on("message", async message => {
 
 
         message.channel.send(embed);
+    }
+    if (command === "setplatform") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
+        if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
+            return message.reply("you're not yet on the list, contact <@125280288799588352> to get added to it!")
+        }
+
+        live.setUser(message.author.id);
+        let link = args[0];
+        platform = capitalize_Words(platform);
+        if (platform !== "Youtube" || platform !== "Twitch") {
+            return message.reply("only platform-options are YouTube and Twitch.");
+        }
+        if (platform === "Youtube") {
+            platform = "YouTube";
+        }
+        message.delete().catch(O_o => { });
+        live.setPlatform(platform);
+        message.channel.send(":white_check_mark: Your live streaming platform has been changed to: `" + platform + "`.").then(message => message.delete(5000));
+    }
+    if (command === "setlink") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
+        if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
+            return message.reply("you're not yet on the list, contact <@125280288799588352> to get added to it!")
+        }
+
+        live.setUser(message.author.id);
+        let link = args[0];
+        message.delete().catch(O_o => { });
+        live.setLink(link);
+        message.channel.send(":white_check_mark: Your live streaming link has been changed to: `" + link + "`.").then(message => message.delete(5000));
+    }
+    if (command === "setdefaultgame") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
+        if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
+            return message.reply("you're not yet on the list, contact <@125280288799588352> to get added to it!")
+        }
+
+        live.setUser(message.author.id);
+        let defaultGame = args.slice(0).join(" ");
+        message.delete().catch(O_o => { });
+        live.setDefaultGame(defaultGame);
+        message.channel.send(":white_check_mark: Your default game has been changed to: `" + defaultGame + "`.").then(message => message.delete(5000));
+    }
+    if (command === "setimage") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
+        if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
+            return message.reply("you're not yet on the list, contact <@125280288799588352> to get added to it!")
+        }
+
+        live.setUser(message.author.id);
+        let image = args[0];
+        message.delete().catch(O_o => { });
+        live.setImage(image);
+        message.channel.send(":white_check_mark: Your image has been changed.").then(message => message.delete(5000));
     }
 });
 
