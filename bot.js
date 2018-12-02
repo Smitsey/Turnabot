@@ -597,6 +597,9 @@ client.on("message", async message => {
 
         live.setUser(message.author.id);
         let link = args[0];
+        if (!(link.includes("https://www.youtube.com/") || link.includes("https://www.twitch.tv/"))) {
+            return message.reply("that's an invalid channel link.\nLink must contain `https://www.youtube.com/` or `https://www.twitch.tv/`");
+        }
         message.delete().catch(O_o => { });
         live.setLink(link);
         message.channel.send(":white_check_mark: Your live streaming link has been changed to: `" + link + "`.").then(message => message.delete(5000));
@@ -625,6 +628,9 @@ client.on("message", async message => {
 
         live.setUser(message.author.id);
         let image = args[0];
+        if (!image.includes("https://i.imgur.com/")) {
+            return message.reply("that's an invalid link.\nPicture must be from https://imgur.com/, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`,Gif's work too!");
+        }
         message.delete().catch(O_o => { });
         live.setImage(image);
         message.channel.send(":white_check_mark: Your image has been changed.").then(message => message.delete(5000));
