@@ -577,7 +577,7 @@ client.on("message", async message => {
         live.setUser(message.author.id);
         let platform = args[0];
         platform = capitalize_Words(platform);
-        if (platform !== "Youtube" || platform !== "Twitch") {
+        if (platform !== "Youtube" && platform !== "Twitch") {
             return message.reply("only platform-options are YouTube and Twitch.");
         }
         if (platform === "Youtube") {
