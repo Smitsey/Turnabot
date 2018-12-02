@@ -83,7 +83,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".rps",
-                            value: "Play a game of rock, paper, scissors with a someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: .rps r|p|s or rock|paper|scissors\n\u200b"
+                            value: "Play a game of rock, paper, scissors with a someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b"
                         },
                         {
                             name: ".games",
@@ -91,11 +91,11 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".role",
-                            value: "Adds or removes one of the possible roles, .role for more info.\nUsage: .role add|del role\n\u200b"
+                            value: "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b"
                         },
                         {
                             name: ".react",
-                            value: "Reacts with input to the latest message.\nUsage: .react Great\n\u200b"
+                            value: "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -120,7 +120,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         fields: [{
                             name: "\u200b\n.poll",
-                            value: "Makes a poll on which people can vote in #polls.\nUsage: .poll Q; O1; O2 ... *Options blank for yes or no question.*\n\u200b"
+                            value: "Makes a poll on which people can vote in #polls.\nUsage: `.poll Q; O1; O2 ...` or `.poll Question` for yes/no poll.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -145,7 +145,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         fields: [{
                             name: "\u200b\n.live",
-                            value: "Let people know you're livestreaming right now!\n.liveSettings to customize the embed!\n\u200b"
+                            value: "Let people know you're livestreaming right now!\nUsage: `.live Game`, leave game blank for your default game. \n.liveSettings to customize the embed!\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -174,7 +174,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".purge",
-                            value: "Removes up to 100 messages from all users in the channel.\nUsage: .purge 42\n\u200b"
+                            value: "Removes up to 100 messages from all users in the channel.\nUsage: `.purge 42`\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -471,10 +471,10 @@ client.on("message", async message => {
             .setTimestamp()
             .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
             .addField("\u200b\n.ping", "Shows an average latency between the bot and the websocket server.\n\u200b")
-            .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: .rps r|p|s or rock|paper|scissors\n\u200b")
+            .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
-            .addField(".role", "Adds or removes one of the possible roles, .role for more info.\nUsage: .role add|del role\n\u200b")
-            .addField(".react", "Reacts with input to the latest message.\nUsage: .react Great\n\u200b")
+            .addField(".role", "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
+            .addField(".react", "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b")
 
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
@@ -629,7 +629,7 @@ client.on("message", async message => {
         live.setUser(message.author.id);
         let image = args[0];
         if (!image.includes("https://i.imgur.com/")) {
-            return message.reply("that's an invalid link.\nPicture must be from https://imgur.com/, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`,Gif's work too!");
+            return message.reply("that's an invalid link.\nPicture must be from https://imgur.com/, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`, gif's work too!");
         }
         message.delete().catch(O_o => { });
         live.setImage(image);
@@ -642,10 +642,10 @@ client.on("message", async message => {
             .setFooter("Turnabout Member role required!")
             .setTimestamp()
             .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-            .addField("\u200b\n.setPlatform", "Change your streaming platform.\n\u200b")
-            .addField(".setLink", "Change the link of your channel (YouTube|Twitch).\n\u200b")
+            .addField("\u200b\n.setPlatform", "Change your streaming platform (YouTube | Twitch).\n\u200b")
+            .addField(".setLink", "Change the link of your channel (YouTube | Twitch).\n\u200b")
             .addField(".setDefaultGame", "Change your default game that you stream.\n\u200b")
-            .addField(".setImage", "Change the image inside the embed.\n**Has** to be from https://imgur.com, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`, Gif's work too!\n\u200b")
+            .addField(".setImage", "Change the image inside the embed.\n**Has** to be from https://imgur.com, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`, gif's work too!\n\u200b")
 
         message.channel.send(Embed)
     }
