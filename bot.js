@@ -145,7 +145,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         fields: [{
                             name: "\u200b\n.live",
-                            value: "Let people know you're livestreaming right now!\n\u200b"
+                            value: "Let people know you're livestreaming right now!\n.liveSettings to customize the embed!\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -634,6 +634,20 @@ client.on("message", async message => {
         message.delete().catch(O_o => { });
         live.setImage(image);
         message.channel.send(":white_check_mark: Your image has been changed.").then(message => message.delete(5000));
+    }
+    if (command === "livesettings") {
+        const Embed = new Discord.RichEmbed()
+            .setAuthor("Live Settings", "https://i.imgur.com/x9vHs9f.png")
+            .setColor([255, 209, 0])
+            .setFooter("Turnabout Member role required!")
+            .setTimestamp()
+            .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+            .addField("\u200b\n.setPlatform", "Change your streaming platform.\n\u200b")
+            .addField(".setLink", "Change the link of your channel (YouTube|Twitch).\n\u200b")
+            .addField(".setDefaultGame", "Change your default game that you stream.\n\u200b")
+            .addField(".setImage", "Change the image inside the embed.\n**Has** to be from https://imgur.com, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`, Gif's work too!\n\u200b")
+
+        message.channel.send(Embed)
     }
 });
 
