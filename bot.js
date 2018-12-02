@@ -83,7 +83,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".rps",
-                            value: "Play a game of rock, paper, scissors with a someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b"
+                            value: "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b"
                         },
                         {
                             name: ".games",
