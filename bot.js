@@ -230,7 +230,7 @@ client.on("message", async message => {
     var gifs = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318"];
     for (var i = 0; i < messageSplit.length; i++){
         if (messageSplit[i] === "<@470006403113680906>") {
-            var getal = getRandomInt(0, gifs.length - 1);
+            var getal = getRandomInt(0, gifs.length);
         return message.channel.send(gifs[getal]);
     }
 }
