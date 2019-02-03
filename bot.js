@@ -54,6 +54,11 @@ client.on("ready", () => {
 
         return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hours + ":" + minutes + dayHalf;
     }
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 }
 
 // Last 2 messages array
@@ -92,10 +97,6 @@ client.on('messageReactionAdd', (reaction, user) => {
                         {
                             name: ".role",
                             value: "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b"
-                        },
-                        {
-                            name: ".react",
-                            value: "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -115,13 +116,13 @@ client.on('messageReactionAdd', (reaction, user) => {
                     embed: {
                         color: 16765184,
                         author: {
-                            name: "Veteran commands",
+                            name: "Turnabout Member commands",
                             icon_url: "https://i.imgur.com/x9vHs9f.png"
                         },
                         fields: [{
-                            name: "\u200b\n.poll",
-                            value: "Makes a poll on which people can vote in #polls.\nUsage: `.poll Q; O1; O2 ...` or `.poll Question` for yes/no poll.\n\u200b"
-                        }
+                                name: "\u200b\n.react",
+                                value: "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b"
+                            }
                         ],
                         timestamp: new Date(),
                         footer: {
@@ -140,11 +141,15 @@ client.on('messageReactionAdd', (reaction, user) => {
                     embed: {
                         color: 16765184,
                         author: {
-                            name: "Turnabout member commands",
+                            name: "Active Typewriter commands",
                             icon_url: "https://i.imgur.com/x9vHs9f.png"
                         },
                         fields: [{
-                            name: "\u200b\n.live",
+                            name: "\u200b\n.poll",
+                            value: "Makes a poll on which people can vote in #polls.\nUsage: `.poll Q; O1; O2 ...` or `.poll Question` for yes/no poll.\n\u200b"
+                        },
+                            {
+                            name: ".live",
                             value: "Let people know you're livestreaming right now!\nUsage: `.live Game`, leave game blank for your default game. \n.liveSettings to customize the embed!\n\u200b"
                         }
                         ],
@@ -221,8 +226,17 @@ client.on("message", async message => {
         lastMessages[1] = message;
     }
 
+    var messageSplit = message.content.split(" ");
+    for (var i = 0; i < messageSplit.length; i++){
+    if (messageSplit[i] === "<@470006403113680906>") {
+        var getal = getRandomInt(1, 1);
+        if (getal === 1) {
+            return message.channel.send("https://gph.is/1SPmL69");
+        }
+    }
+}
     if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
     const command = args.shift().toLowerCase();
 
     if (command === "ping") {
@@ -233,7 +247,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["TurboLand", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         } else {
             // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
@@ -246,7 +260,7 @@ client.on("message", async message => {
         }
     }
     if (command === "poll") {
-        if (!message.member.roles.some(r => ["Veterans", "Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (args <= 4) {
@@ -446,7 +460,7 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!message.member.roles.some(r => ["Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
@@ -474,7 +488,6 @@ client.on("message", async message => {
             .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
             .addField(".role", "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
-            .addField(".react", "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b")
 
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
@@ -523,6 +536,9 @@ client.on("message", async message => {
 
     }
     if (command === "react") {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
         let messageToReactOn = lastMessages[0];
         let reactionWord = args.slice(0).join(" ").toLowerCase();
         lastMessages[1] = lastMessages[0];
@@ -536,7 +552,7 @@ client.on("message", async message => {
         }
     }
     if (command === "live") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -567,7 +583,7 @@ client.on("message", async message => {
         message.channel.send(embed);
     }
     if (command === "setplatform") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -588,7 +604,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming platform has been changed to: `" + platform + "`.").then(message => message.delete(5000));
     }
     if (command === "setlink") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -605,7 +621,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming link has been changed to: `" + link + "`.").then(message => message.delete(5000));
     }
     if (command === "setdefaultgame") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -619,7 +635,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your default game has been changed to: `" + defaultGame + "`.").then(message => message.delete(5000));
     }
     if (command === "setimage") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Mods", "Mucho Importante Spaghetti"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -639,7 +655,7 @@ client.on("message", async message => {
         const Embed = new Discord.RichEmbed()
             .setAuthor("Live Settings", "https://i.imgur.com/x9vHs9f.png")
             .setColor([255, 209, 0])
-            .setFooter("Turnabout Member role required!")
+            .setFooter("Active Typewriter role required!")
             .setTimestamp()
             .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
             .addField("\u200b\n.setPlatform", "Change your streaming platform (YouTube | Twitch).\n\u200b")
