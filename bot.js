@@ -72,6 +72,46 @@ var emojis = [];
 // Help-Extra
 var helpMessage;
 client.on('messageReactionAdd', (reaction, user) => {
+    if (reaction.emoji.name === '❗') {
+        let message = reaction.message;
+        let messageString = message.content;
+        let messageSplit = message.content.split(" ");
+
+        if (user.id === "223844912456531988" || user.id === "277930565028544512" || user.id === "211940365266059264" || user.id === "125280288799588352") {
+            const embed = new Discord.RichEmbed()
+
+            if (message.attachments.size > 0) { //Image
+                var attachment = (message.attachments).array();
+                embed.setImage(`${attachment[0].url}`)
+            }
+
+            if (messageString.includes("https://www.youtube.com/")) {
+                for (var i = 0; i < messageSplit.length; i++) {
+                    if (messageSplit[i].includes("https://www.youtube.com/")) {
+                        embed.setImage(`${messageSplit[i]}`)
+                    }
+                }
+            }
+
+            embed.setThumbnail(message.author.avatarURL)
+            embed.setColor([255, 0, 0])
+            embed.setTimestamp(message.createdAt)
+            embed.setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+
+            if (messageString.length > 0) {
+                embed.addField("❗️ CRIME DETECTED", "\u200b\n `" + messageString + "`\n\u200b", false)
+            } else {
+                embed.addField("❗️ CRIME DETECTED", "\u200b\nNo message was given.\n\u200b", false)
+            }
+
+            embed.addField("Criminal:", `<@${message.author.id}>`, true)
+            embed.addField("Detective:", `<@${user.id}>`, true)
+            embed.addBlankField()
+
+            client.channels.get('543903837505978369').send(embed).then(reaction.message.delete(10000));
+        }
+    }
+
     if (reaction.count > 1) {
         switch (reaction.emoji.name) {
             case '1⃣':
