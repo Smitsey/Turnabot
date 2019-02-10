@@ -99,9 +99,9 @@ client.on('messageReactionAdd', (reaction, user) => {
             embed.setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
 
             if (messageString.length > 0) {
-                embed.addField("❗️ CRIME DETECTED", "\u200b\n `" + messageString + "`\n\u200b", false)
+                embed.addField("❗️ CRIME DETECTED", "\u200b\n<#" + message.channel.id + ">: `" + messageString + "`\n\u200b", false)
             } else {
-                embed.addField("❗️ CRIME DETECTED", "\u200b\nNo message was given.\n\u200b", false)
+                embed.addField("❗️ CRIME DETECTED", `\u200b\n<#${message.channel.id}>: No message was given.\n\u200b`, false)
             }
 
             embed.addField("Criminal:", `<@${message.author.id}>`, true)
