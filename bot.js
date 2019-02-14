@@ -727,7 +727,7 @@ client.on("message", async message => {
         message.channel.send(Embed)
     }
     if (command === "gamenightmsg") {
-        message.channel.send("Welcome to the server! :smile: \nTo get the <@481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
+        message.channel.send("Welcome to the server! :smile: \nTo get the <@&481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
             await newMessage.react('🎲')
         });
     }
