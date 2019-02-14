@@ -72,12 +72,15 @@ var emojis = [];
 // Help-Extra
 var helpMessage;
 client.on('messageReactionAdd', (reaction, user) => {
+    let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
+    let reactionMember = guild.member(user.id);
+
     if (reaction.emoji.name === '❗') {
         let message = reaction.message;
         let messageString = message.content;
         let messageSplit = message.content.split(" ");
 
-        if (user.id === "223844912456531988" || user.id === "277930565028544512" || user.id === "211940365266059264" || user.id === "125280288799588352") {
+        if (reactionMember.roles.some(r => ["Mucho Importante Spaghetti"].includes(r.name))) {
             const embed = new Discord.RichEmbed()
 
             if (message.attachments.size > 0) { //Image
@@ -111,7 +114,6 @@ client.on('messageReactionAdd', (reaction, user) => {
             client.channels.get('543903837505978369').send(embed).then(reaction.message.delete(10000));
         }
     }
-
     if (reaction.count > 1) {
         switch (reaction.emoji.name) {
             case '1⃣':
@@ -160,9 +162,9 @@ client.on('messageReactionAdd', (reaction, user) => {
                             icon_url: "https://i.imgur.com/x9vHs9f.png"
                         },
                         fields: [{
-                                name: "\u200b\n.react",
-                                value: "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b"
-                            }
+                            name: "\u200b\n.react",
+                            value: "Reacts with input to the latest message.\nUsage: `.react Great`.\n\u200b"
+                        }
                         ],
                         timestamp: new Date(),
                         footer: {
@@ -188,7 +190,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                             name: "\u200b\n.poll",
                             value: "Makes a poll on which people can vote in #polls.\nUsage: `.poll Q; O1; O2 ...` or `.poll Question` for yes/no poll.\n\u200b"
                         },
-                            {
+                        {
                             name: ".live",
                             value: "Let people know you're livestreaming right now!\nUsage: `.live Game`, leave game blank for your default game. \n.liveSettings to customize the embed!\n\u200b"
                         }
@@ -268,12 +270,12 @@ client.on("message", async message => {
 
     var messageSplit = message.content.split(" ");
     var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
-    for (var i = 0; i < messageSplit.length; i++){
+    for (var i = 0; i < messageSplit.length; i++) {
         if (messageSplit[i] === "<@470006403113680906>") {
             var getal = getRandomInt(0, replies.length);
-        return message.channel.send(replies[getal]);
+            return message.channel.send(replies[getal]);
+        }
     }
-}
     if (!message.content.startsWith(config.prefix) || message.author.bot) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
     const command = args.shift().toLowerCase();
@@ -346,7 +348,7 @@ client.on("message", async message => {
             })
             console.log(`${message.author.username} made a multi-option poll.`);
 
-        // Yes or no
+            // Yes or no
         } else {
             message.delete().catch(O_o => { });
             message.channel.send(`:ballot_box: ${message.author.username} has started a vote! React to my message in ` + message.guild.channels.get('472042203380973568').toString() + ` to vote on it. :ballot_box: `);
@@ -537,40 +539,40 @@ client.on("message", async message => {
             helpMessage = newMessage
         })
     }
-	if (command === "time"){
-		var date = new Date();
+    if (command === "time") {
+        var date = new Date();
         var hours = date.getHours();
         var minutes = date.getMinutes();
         var seconds = date.getSeconds();
 
-        if (hours < 10){
+        if (hours < 10) {
             hours = "0" + hours;
         }
 
-        if (minutes < 10){
+        if (minutes < 10) {
             minutes = "0" + minutes;
         }
 
-        if (seconds < 10){
+        if (seconds < 10) {
             seconds = "0" + seconds;
         }
 
-		message.channel.send("It is: " + hours + ":" + minutes + ":" + seconds);
-	}
-	if (command === "christmas"){
-	    var datum = new Date();
-	    var kerst = new Date("12/24/2018");
-	    var verschil = (kerst - datum) / 86400000;
+        message.channel.send("It is: " + hours + ":" + minutes + ":" + seconds);
+    }
+    if (command === "christmas") {
+        var datum = new Date();
+        var kerst = new Date("12/24/2018");
+        var verschil = (kerst - datum) / 86400000;
 
-	    if (verschil > 0){
-	        if (Math.round(Math.abs(verschil)) == 0){
-	            message.channel.send("Christmas Eve is today!");
-            }else{
+        if (verschil > 0) {
+            if (Math.round(Math.abs(verschil)) == 0) {
+                message.channel.send("Christmas Eve is today!");
+            } else {
                 message.channel.send("Only: " + Math.ceil(Math.abs(verschil)) + " Day(s) left until Christmas Eve!");
             }
 
-        }else{
-	        message.channel.send("It has been: " + Math.ceil(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
+        } else {
+            message.channel.send("It has been: " + Math.ceil(Math.abs(verschil)) + " Day(s) since Christmas Eve 2018.");
         }
 
     }
