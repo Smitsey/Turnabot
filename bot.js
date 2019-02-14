@@ -6,6 +6,8 @@ const live = require("./live.js");
 client.on("ready", () => {
     console.log("I am ready, master.");
     client.user.setActivity(".help", { type: 'PLAYING' });
+    let gamenight_channel = client.channels.get("481863151495938048");
+    //gamenight_channel.fetchMessage(""); //GameNight role Message
 });
 
 // Useful functions
@@ -72,6 +74,11 @@ var emojis = [];
 // Help-Extra
 var helpMessage;
 client.on('messageReactionAdd', (reaction, user) => {
+    /*if (reaction.message.id === "" && reaction.emoji.name != '🎲') {
+        reaction.fetchUsers().then(function (reactionUsers) {
+            reaction.remove(user);
+        });
+    }*/
     let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
     let reactionMember = guild.member(user.id);
 
@@ -113,6 +120,10 @@ client.on('messageReactionAdd', (reaction, user) => {
 
             client.channels.get('543903837505978369').send(embed).then(reaction.message.delete(10000));
         }
+    }
+    if (reaction.emoji.name === '🎲' /*&& reaction.message.id === ""*/) {
+        let role = guild.roles.find("name", "GameNight");
+        reactionMember.addRole(role);
     }
     if (reaction.count > 1) {
         switch (reaction.emoji.name) {
@@ -237,6 +248,15 @@ client.on('messageReactionAdd', (reaction, user) => {
                 });
                 break;
         }
+    }
+});
+
+client.on('messageReactionRemove', (reaction, user) => {
+    let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
+    let reactionMember = guild.member(user.id);
+    if (reaction.emoji.name === '🎲' /*&& reaction.message.id === ""*/) {
+        let role = guild.roles.find("name", "GameNight");
+        reactionMember.removeRole(role);
     }
 });
 
@@ -705,6 +725,11 @@ client.on("message", async message => {
             .addField(".setImage", "Change the image inside the embed.\n**Has** to be from https://imgur.com, look for the sharing-link that looks like this: `https://i.imgur.com/example.png`, gif's work too!\n\u200b")
 
         message.channel.send(Embed)
+    }
+    if (command === "gamenightmsg") {
+        message.channel.send("Welcome to the server! :smile: \nTo get the <@481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
+            await newMessage.react('🎲')
+        });
     }
 });
 
