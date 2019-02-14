@@ -7,7 +7,7 @@ client.on("ready", () => {
     console.log("I am ready, master.");
     client.user.setActivity(".help", { type: 'PLAYING' });
     let gamenight_channel = client.channels.get("481863151495938048");
-    //gamenight_channel.fetchMessage(""); //GameNight role Message
+    gamenight_channel.fetchMessage("545733972466991122"); //GameNight role Message
 });
 
 // Useful functions
@@ -74,11 +74,11 @@ var emojis = [];
 // Help-Extra
 var helpMessage;
 client.on('messageReactionAdd', (reaction, user) => {
-    /*if (reaction.message.id === "" && reaction.emoji.name != '🎲') {
+    if (reaction.message.id === "545733972466991122" && reaction.emoji.name != '🎲') {
         reaction.fetchUsers().then(function (reactionUsers) {
             reaction.remove(user);
         });
-    }*/
+    }
     let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
     let reactionMember = guild.member(user.id);
 
@@ -121,7 +121,7 @@ client.on('messageReactionAdd', (reaction, user) => {
             client.channels.get('543903837505978369').send(embed).then(reaction.message.delete(10000));
         }
     }
-    if (reaction.emoji.name === '🎲' /*&& reaction.message.id === ""*/) {
+    if (reaction.emoji.name === '🎲' && reaction.message.id === "545733972466991122") {
         let role = guild.roles.find("name", "GameNight");
         reactionMember.addRole(role);
     }
@@ -254,7 +254,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 client.on('messageReactionRemove', (reaction, user) => {
     let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
     let reactionMember = guild.member(user.id);
-    if (reaction.emoji.name === '🎲' /*&& reaction.message.id === ""*/) {
+    if (reaction.emoji.name === '🎲' && reaction.message.id === "545733972466991122") {
         let role = guild.roles.find("name", "GameNight");
         reactionMember.removeRole(role);
     }
