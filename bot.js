@@ -591,7 +591,6 @@ client.on("message", async message => {
         }
         message.channel.fetchMessages({ limit: 2 }).then(async messages => {
             let arr = messages.array();
-            console.log(arr);
             let reactionWord = args.slice(0).join(" ").toLowerCase();
             message.delete().catch(O_o => { });
             var reactionNumbers = alphabetPosition(reactionWord).split(' ');
