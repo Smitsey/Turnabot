@@ -63,9 +63,6 @@ client.on("ready", () => {
     }
 }
 
-// Last 2 messages array
-var lastMessages = [];
-
 // RPS-Extra
 var players = [];
 var materials = [];
@@ -280,14 +277,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 })
 
 client.on("message", async message => {
-    if (lastMessages.length === 2) {
-        lastMessages.splice(0, 1);
-        lastMessages.push(message);
-    } else {
-        lastMessages[0] = message;
-        lastMessages[1] = message;
-    }
-
     var messageSplit = message.content.split(" ");
     var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
     for (var i = 0; i < messageSplit.length; i++) {
@@ -600,17 +589,19 @@ client.on("message", async message => {
         if (!message.member.roles.some(r => ["Turnabout Member", "Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
-        let messageToReactOn = lastMessages[0];
-        let reactionWord = args.slice(0).join(" ").toLowerCase();
-        lastMessages[1] = lastMessages[0];
-        message.delete().catch(O_o => { });
-        var reactionNumbers = alphabetPosition(reactionWord).split(' ');
-        reactionNumbers = removeDuplicates(reactionNumbers).map(Number);
+        message.channel.fetchMessages({ limit: 2 }).then(async messages => {
+            let arr = messages.array();
+            console.log(arr);
+            let reactionWord = args.slice(0).join(" ").toLowerCase();
+            message.delete().catch(O_o => { });
+            var reactionNumbers = alphabetPosition(reactionWord).split(' ');
+            reactionNumbers = removeDuplicates(reactionNumbers).map(Number);
 
-        var emoji = 127461; // One before indicator emojis start
-        for (var i = 0; i < reactionNumbers.length; i++) {
-            await messageToReactOn.react(String.fromCodePoint(emoji + reactionNumbers[i]));
-        }
+            var emoji = 127461; // One before indicator emojis start
+            for (var i = 0; i < reactionNumbers.length; i++) {
+                await arr[1].react(String.fromCodePoint(emoji + reactionNumbers[i]));
+            }
+        });
     }
     if (command === "live") {
         if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
@@ -727,6 +718,9 @@ client.on("message", async message => {
         message.channel.send(Embed)
     }
     if (command === "gamenightmsg") {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+            return;
+        }
         message.channel.send("Welcome to the server! :smile: \nTo get the <@&481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
             await newMessage.react('🎲')
         });
