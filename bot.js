@@ -146,7 +146,7 @@ client.on('messageReactionAdd', (reaction, user) => {
                         },
                         {
                             name: ".role",
-                            value: "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b"
+                            value: "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -416,8 +416,7 @@ client.on("message", async message => {
                 return message.reply("you already have that role.")
             } else {
                 user.addRole(role);
-                return message.reply("your roles have been updated.").then(message => message.delete(5000))
-                message.delete().catch(O_o => { });
+                return message.reply("your roles have been updated.");
             }
         }
 
@@ -426,8 +425,7 @@ client.on("message", async message => {
                 return message.reply("you can't remove a role you don't have.")
             } else {
                 user.removeRole(role);
-                return message.reply("your roles have been updated.").then(message => message.delete(5000))
-                message.delete().catch(O_o => { });
+                return message.reply("your roles have been updated.");
             }
         }
     }
@@ -537,7 +535,7 @@ client.on("message", async message => {
             .addField("\u200b\n.ping", "Shows an average latency between the bot and the websocket server.\n\u200b")
             .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
-            .addField(".role", "Adds or removes one of the possible roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
+            .addField(".role", "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
 
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
