@@ -746,7 +746,13 @@ client.on("message", async message => {
             message.channel.fetchMessage(messageNr).then(async messages => {
                 message.delete().catch(O_o => { });
                 let targetMessage = messages;
-                client.channels.get(targetChannel).send(`By <@${targetMessage.author.id}>: \n${targetMessage.content} \n\n *This message was moved by:* **${message.author.username}**`);
+                let time = targetMessage.createdAt.toString().split(" ");
+                const embed = new Discord.RichEmbed()
+                embed.setAuthor(targetMessage.author.username + ` at ${time[2]} ${time[1]} ${time[3]} - ${time[4]} (${time[5]})`, targetMessage.author.avatarURL)
+                embed.setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
+                embed.setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+                client.channels.get(targetChannel).send(embed);
+                client.channels.get(targetChannel).send(targetMessage.content).then(targetMessage.delete());
             });
         }
 
@@ -756,7 +762,13 @@ client.on("message", async message => {
                 let arr = messages.array();
                 message.delete().catch(O_o => { });
                 let targetMessage = arr[messageNr - 1];
-                client.channels.get(targetChannel).send(`By <@${targetMessage.author.id}>: \n${targetMessage.content} \n\n *This message was moved by:* **${message.author.username}**`);
+                let time = targetMessage.createdAt.toString().split(" ");
+                const embed = new Discord.RichEmbed()
+                embed.setAuthor(targetMessage.author.username + ` at ${time[2]} ${time[1]} ${time[3]} - ${time[4]} (${time[5]})`, targetMessage.author.avatarURL)
+                embed.setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
+                embed.setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+                client.channels.get(targetChannel).send(embed);
+                client.channels.get(targetChannel).send(targetMessage.content).then(targetMessage.delete());
             });
         }
 
