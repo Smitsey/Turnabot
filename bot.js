@@ -230,6 +230,10 @@ client.on('messageReactionAdd', (reaction, user) => {
                         {
                             name: ".purge",
                             value: "Removes up to 100 messages from all users in the channel.\nUsage: `.purge 42`\n\u200b"
+                        },
+                        {
+                            name: ".move",
+                            value: "Moves any message to a different text-channel\nUsage: `.move 5 #general-chat` or `.move <messageID> #general-chat`\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -297,7 +301,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (!message.member.roles.some(r => ["TurboLand", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         } else {
             // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
@@ -310,7 +314,7 @@ client.on("message", async message => {
         }
     }
     if (command === "poll") {
-        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (args <= 4) {
@@ -399,7 +403,7 @@ client.on("message", async message => {
             rolestring = "GameNight";
         } else if (rolestring === "fifa") {
             rolestring = "FIFA";
-        } 
+        }
 
         let role = message.guild.roles.find("name", `${rolestring}`);
         let user = message.member;
@@ -508,7 +512,7 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
@@ -584,7 +588,7 @@ client.on("message", async message => {
 
     }
     if (command === "react") {
-        if (!message.member.roles.some(r => ["Turnabout Member", "Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Turnabout Member", "Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         message.channel.fetchMessages({ limit: 2 }).then(async messages => {
@@ -632,7 +636,7 @@ client.on("message", async message => {
         message.channel.send(embed);
     }
     if (command === "setplatform") {
-        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -653,7 +657,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming platform has been changed to: `" + platform + "`.").then(message => message.delete(5000));
     }
     if (command === "setlink") {
-        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -670,7 +674,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming link has been changed to: `" + link + "`.").then(message => message.delete(5000));
     }
     if (command === "setdefaultgame") {
-        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -684,7 +688,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your default game has been changed to: `" + defaultGame + "`.").then(message => message.delete(5000));
     }
     if (command === "setimage") {
-        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Active Typewriters", "Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -715,12 +719,48 @@ client.on("message", async message => {
         message.channel.send(Embed)
     }
     if (command === "gamenightmsg") {
-        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "TurboLand", "Coder"].includes(r.name))) {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return;
         }
         message.channel.send("Welcome to the server! :smile: \nTo get the <@&481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
             await newMessage.react('🎲')
         });
+    }
+    if (command === "move") {
+        if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
+            return message.reply("you don't have permission to use this command!");
+        }
+
+        let messageNr = args[0];
+        let targetChannel = args[1].substring(2, args[1].length - 1);
+
+        if (isNaN(messageNr)) {
+            return message.reply("that's not a valid message number!");
+        }
+
+        if (!message.guild.channels.has(targetChannel)) {
+            return message.reply("that channel doesn't exist!");
+        }
+
+        if (messageNr > 100) {
+            message.channel.fetchMessage(messageNr).then(async messages => {
+                message.delete().catch(O_o => { });
+                let targetMessage = messages;
+                client.channels.get(targetChannel).send(`By <@${targetMessage.author.id}>: \n${targetMessage.content} \n\n *This message was moved by:* **${message.author.username}**`);
+            });
+        }
+
+        else if (messageNr > 0 && messageNr <= 100) {
+            messageNr = parseInt(messageNr) + 1;
+            message.channel.fetchMessages({ limit: messageNr }).then(async messages => {
+                let arr = messages.array();
+                message.delete().catch(O_o => { });
+                let targetMessage = arr[messageNr - 1];
+                client.channels.get(targetChannel).send(`By <@${targetMessage.author.id}>: \n${targetMessage.content} \n\n *This message was moved by:* **${message.author.username}**`);
+            });
+        }
+
+
     }
 });
 
