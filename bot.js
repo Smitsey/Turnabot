@@ -84,7 +84,7 @@ client.on("ready", () => {
         let seconds = Math.round(delta % 60);  // in theory the modulus is not required
 
         console.log(days);
-        return "It took <@125280288799588352> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!";
+        return "*It took <@125280288799588352> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!*";
     }
 }
 
@@ -330,7 +330,7 @@ client.on("message", async message => {
             const sayMessage = args.join(" ");
             let easterEgg = jurchTime();
             message.delete().catch(O_o => { });
-            message.channel.send(sayMessage + "\n" + easterEgg);
+            message.channel.send(sayMessage + "\n\n" + easterEgg);
             return;
         }
 
