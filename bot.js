@@ -62,7 +62,7 @@ client.on("ready", () => {
         return Math.floor(Math.random() * (max - min)) + min;
     }
     function jurchTime() {
-        let setDate = new Date("2019-10-22T19:28:00");
+        let setDate = new Date("2019-10-22T19:48:30");
         let nowDate = new Date();
 
         // get total seconds between the times
@@ -84,7 +84,7 @@ client.on("ready", () => {
         let seconds = Math.round(delta % 60);  // in theory the modulus is not required
 
         console.log(days);
-        return "*It took <@125280288799588352> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!*";
+        return "*It took <@317018329963429889> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!*";
     }
 }
 
@@ -326,9 +326,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        let jurch = client.users.get('name', 'Smitsey');
-        let jurchID = jurch.id;
-        if (message.author.id === jurchID) {
+        if (message.author.id === "317018329963429889"){
             const sayMessage = args.join(" ");
             let easterEgg = jurchTime();
             message.delete().catch(O_o => { });
