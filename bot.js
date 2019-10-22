@@ -61,6 +61,31 @@ client.on("ready", () => {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
     }
+    function jurchTime() {
+        let setDate = new Date("2019-10-22T20:00:00");
+        let nowDate = new Date();
+
+        // get total seconds between the times
+        let delta = Math.abs(setDate - nowDate) / 1000;
+
+        // calculate (and subtract) whole days
+        let days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+
+        // calculate (and subtract) whole hours
+        let hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+
+        // calculate (and subtract) whole minutes
+        var minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+
+        // what's left is seconds
+        let seconds = Math.round(delta % 60);  // in theory the modulus is not required
+
+        console.log(days);
+        return "It took <@125280288799588352> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!";
+    }
 }
 
 // RPS-Extra
@@ -301,6 +326,13 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
+        if (message.author.id === "125280288799588352") {
+            const sayMessage = args.join(" ");
+            let easterEgg = jurchTime();
+            message.delete().catch(O_o => { });
+            message.channel.send(sayMessage + "\n" + easterEgg);
+        }
+
         if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
             return message.reply("you don't have permission to use this command!");
         } else {
