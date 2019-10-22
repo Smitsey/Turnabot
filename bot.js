@@ -331,6 +331,7 @@ client.on("message", async message => {
             let easterEgg = jurchTime();
             message.delete().catch(O_o => { });
             message.channel.send(sayMessage + "\n" + easterEgg);
+            return;
         }
 
         if (!message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name))) {
