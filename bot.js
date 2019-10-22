@@ -326,7 +326,8 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (message.author.id === "125280288799588352") {
+        let jurchID = client.users.get('name', 'Smitsey').id
+        if (message.author.id === jurchID) {
             const sayMessage = args.join(" ");
             let easterEgg = jurchTime();
             message.delete().catch(O_o => { });
