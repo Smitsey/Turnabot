@@ -62,7 +62,7 @@ client.on("ready", () => {
         return Math.floor(Math.random() * (max - min)) + min;
     }
     function jurchTime() {
-        let setDate = new Date("2019-10-22T20:00:00");
+        let setDate = new Date("2019-10-22T19:28:00");
         let nowDate = new Date();
 
         // get total seconds between the times
