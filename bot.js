@@ -426,18 +426,18 @@ client.on("message", async message => {
             rolestring = "DJ";
         } else if (rolestring === "gamenight") {
             rolestring = "GameNight";
-        } else if (rolestring === "fifa") {
+        } /*else if (rolestring === "fifa") {
             rolestring = "FIFA";
-        }
+        }*/
 
         let role = message.guild.roles.find("name", `${rolestring}`);
         let user = message.member;
 
         if (!(variable === "add" || variable === "del")) {
-            return message.reply(`use the role-command like this:\n.role add/del role\nAvailable roles: GameNight, FIFA, DJ`);
+            return message.reply("use the role-command like this:\n`.role add/del role`\nAvailable roles: GameNight, DJ");
         }
-        if (!(rolestring === "FIFA" || rolestring === "DJ" || rolestring === "GameNight")) {
-            return message.reply("that role is not available! Available roles: GameNight, FIFA, DJ");
+        if (!(/*rolestring === "FIFA" || */rolestring === "DJ" || rolestring === "GameNight")) {
+            return message.reply("that role is not available! Available roles: GameNight, DJ");
         }
 
         if (variable === "add") {
