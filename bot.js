@@ -800,7 +800,7 @@ client.on("message", async message => {
 
 
     }
-    if (command === "userinfo") {
+    if (command === "userinfo" || command === "joindate") {
         let authorUser = message.author;
         let authorMember = message.guild.member(authorUser);
         let authorAvatar = authorUser.displayAvatarURL;
