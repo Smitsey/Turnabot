@@ -611,7 +611,7 @@ client.on("message", async message => {
     }
     if (command === "christmas") {
         var datum = new Date();
-        var kerst = new Date("12/24/2018");
+        var kerst = new Date("12/24/2019");
         var verschil = (kerst - datum) / 86400000;
 
         if (verschil > 0) {
