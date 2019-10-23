@@ -807,6 +807,37 @@ client.on("message", async message => {
 
 
     }
+    if (command === "userinfo") {
+        let authorUser = message.author;
+        let authorMember = message.guild.member(authorUser);
+        let authorAvatar = authorUser.displayAvatarURL;
+        let mentionMember = message.guild.member(message.mentions.users.first());
+
+        if (!mentionMember) {
+            let memberembed = new Discord.RichEmbed()
+                .setDescription("__**User Information**__")
+                .setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
+                .setThumbnail(authorAvatar) // Their icon
+                .addField("Name", `${authorUser.username}#${authorUser.discriminator}`) // Their name, I use a different way, this should work
+                .addField("ID", authorUser.id) // Their ID
+                .addField("Joined at", authorMember.joinedAt) // When they joined
+
+            await message.channel.send(memberembed)
+        }
+
+        let mentionUser = mentionMember.user;
+        let mentionAvatar = mentionUser.displayAvatarURL;
+
+        let memberembed = new Discord.RichEmbed()
+            .setDescription("__**User Information**__")
+            .setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
+            .setThumbnail(mentionAvatar) // Their icon
+            .addField("Name", `${mentionUser.username}#${mentionUser.discriminator}`) // Their name, I use a different way, this should work
+            .addField("ID", mentionUser.id) // Their ID
+            .addField("Joined at", mentionMember.joinedAt) // When they joined
+
+        await message.channel.send(memberembed)
+    }
 });
 
 client.login(process.env.BOT_TOKEN);
