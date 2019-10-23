@@ -874,8 +874,6 @@ client.on("message", async message => {
 
         return await message.channel.send(memberembed)
     }
-
-    }
 });
 
 client.login(process.env.BOT_TOKEN);
