@@ -813,7 +813,7 @@ client.on("message", async message => {
                 .addField("Joined at", authorMember.joinedAt) // When they joined
                 .addField("Created at", authorUser.createdAt)
 
-            await return message.channel.send(memberembed)
+            return await message.channel.send(memberembed)
         }
 
         let mentionUser = mentionMember.user;
@@ -826,7 +826,7 @@ client.on("message", async message => {
             .addField("Joined at", mentionMember.joinedAt) // When they joined
             .addField("Created at", mentionUser.createdAt)
 
-        await return message.channel.send(memberembed)
+        return await message.channel.send(memberembed)
     }
 
     var messageSplit = message.content.split(" ");
