@@ -317,7 +317,20 @@ client.on("message", async message => {
     var messageSplit = message.content.split(" ");
     var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
 
-    if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+    if (!message.content.startsWith(config.prefix) || message.author.bot)
+        return;
+    else {
+        var messageSplit = message.content.split(" ");
+        var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
+
+
+        for (var i = 0; i < messageSplit.length; i++) {
+            if (messageSplit[i] === "<@470006403113680906>") {
+                var getal = getRandomInt(0, replies.length);
+                return message.channel.send(replies[getal]);
+            }
+        }
+    }
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
     const command = args.shift().toLowerCase();
 
@@ -863,18 +876,7 @@ client.on("message", async message => {
             .setImage(mentionAvatar) // Their icon
 
         return await message.channel.send(memberembed)
-    }
-    if (!command) {
-        var messageSplit = message.content.split(" ");
-        var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
-
-
-        for (var i = 0; i < messageSplit.length; i++) {
-            if (messageSplit[i] === "<@470006403113680906>") {
-                var getal = getRandomInt(0, replies.length);
-                return message.channel.send(replies[getal]);
-            }
-        }
+    } 
     }
 });
 
