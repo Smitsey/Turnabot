@@ -573,7 +573,7 @@ client.on("message", async message => {
             .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
             .addField(".role", "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
-
+            .addField(".userinfo", "Gives dates a user joined the server and created his/her account.\nUsage: `.userinfo @Turnabot` *@ is optional*.\n\u200b")
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
             await newMessage.react('1⃣')
