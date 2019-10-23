@@ -172,6 +172,14 @@ client.on('messageReactionAdd', (reaction, user) => {
                         {
                             name: ".role",
                             value: "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b"
+                        },
+                        {
+                            name: ".userinfo | .joindate",
+                            value: "Gives dates a user joined the server and created his/her account.\nUsage: `.userinfo @Turnabot` *@ is optional*.\n\u200b"
+                        },
+                        {
+                            name: ".avatar",
+                            value: "Displays a user's avatar on a bigger and better scale.\n\u200b"
                         }
                         ],
                         timestamp: new Date(),
@@ -321,7 +329,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (message.author.id === "317018329963429889"){
+        if (message.author.id === "317018329963429889") {
             const sayMessage = args.join(" ");
             let easterEgg = jurchTime();
             message.delete().catch(O_o => { });
@@ -568,7 +576,7 @@ client.on("message", async message => {
             .addField(".rps", "Play a game of rock, paper, scissors with someone else! \nIt's best to use this command in a pm to the bot to prevent other players from seeing what u picked.\nUsage: `.rps r|p|s` or `.rps rock|paper|scissors`.\n\u200b")
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
             .addField(".role", "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
-            .addField(".userinfo", "Gives dates a user joined the server and created his/her account.\nUsage: `.userinfo @Turnabot` *@ is optional*.\n\u200b")
+            .addField(".userinfo | .joindate", "Gives dates a user joined the server and created his/her account.\nUsage: `.userinfo @Turnabot` *@ is optional*.\n\u200b")
             .addField(".avatar", "Displays a user's avatar on a bigger and better scale.\n\u200b")
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
@@ -803,7 +811,7 @@ client.on("message", async message => {
 
 
     }
-    if (command === "userinfo") {
+    if (command === "userinfo" || command === "joindate") {
         let authorUser = message.author;
         let authorMember = message.guild.member(authorUser);
         let authorAvatar = authorUser.displayAvatarURL;
