@@ -566,6 +566,7 @@ client.on("message", async message => {
             .addField(".games", "Shows a list of some fun games we play on this server.\n\u200b")
             .addField(".role", "Adds or removes one of the available roles, .role for more info.\nUsage: `.role add|del role`.\n\u200b")
             .addField(".userinfo", "Gives dates a user joined the server and created his/her account.\nUsage: `.userinfo @Turnabot` *@ is optional*.\n\u200b")
+            .addField(".avatar", "Displays a user's avatar on a bigger and better scale.\n\u200b")
 
         message.channel.send(helpEmbed).then(async function (newMessage) {
             await newMessage.react('1⃣')
