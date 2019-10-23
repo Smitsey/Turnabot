@@ -818,9 +818,8 @@ client.on("message", async message => {
                 .setDescription("__**User Information**__")
                 .setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
                 .setThumbnail(authorAvatar) // Their icon
-                .addField("Name", `${authorUser.username}#${authorUser.discriminator}`) // Their name, I use a different way, this should work
-                .addField("ID", authorUser.id) // Their ID
                 .addField("Joined at", authorMember.joinedAt) // When they joined
+                .addField("Created at", authorUser.createdAt)
 
             await message.channel.send(memberembed)
         }
@@ -832,9 +831,8 @@ client.on("message", async message => {
             .setDescription("__**User Information**__")
             .setColor([getRandomInt(0, 255), getRandomInt(0, 255), getRandomInt(0, 255)])
             .setThumbnail(mentionAvatar) // Their icon
-            .addField("Name", `${mentionUser.username}#${mentionUser.discriminator}`) // Their name, I use a different way, this should work
-            .addField("ID", mentionUser.id) // Their ID
             .addField("Joined at", mentionMember.joinedAt) // When they joined
+            .addField("Created at", mentionUser.createdAt)
 
         await message.channel.send(memberembed)
     }
