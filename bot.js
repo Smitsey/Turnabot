@@ -559,7 +559,7 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!message.member.roles.some(r => ["&540291730692636672", "&512043857722998785"].includes(r.id))) {
+        if (!message.member.roles.has.some(r => ["&540291730692636672", "&512043857722998785"].includes(r.id))) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
