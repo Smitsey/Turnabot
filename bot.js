@@ -10,6 +10,10 @@ client.on("ready", () => {
     gamenight_channel.fetchMessage("545734893867368471"); //GameNight role Message
 });
 
+client.on('guildMemberAdd', member => {
+    member.addRole("665960167833206785")
+}
+
 // Useful functions
 {
     function capitalize_Words(str) { // Capitalize first letter of every word (f.i. "test text" > "Test Text")
@@ -88,11 +92,12 @@ client.on("ready", () => {
     }
 }
 
-// Role-ID's (Top > Bottom)
-// 1: &304376314129940490
-// 2: &304377036649267211
-// 3: &540291730692636672
-// Coder: &512043857722998785
+// Role-ID's (Top > Bottom) [Remove "&" if add more]
+// 1: 304376314129940490 - Zellius
+// 2: 304377036649267211 - Freestylegang
+// 3: 540291730692636672 - Turnabout Player
+// 4: 665960167833206785 - Turnabout Rookie
+// 5: 512043857722998785 - Coder
 
 // RPS-Extra
 var players = [];
