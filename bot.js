@@ -12,7 +12,7 @@ client.on("ready", () => {
 
 client.on('guildMemberAdd', member => {
     member.addRole("665960167833206785")
-}
+});
 
 // Useful functions
 {
