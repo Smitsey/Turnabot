@@ -361,7 +361,7 @@ client.on("message", async message => {
         }
     }
     if (command === "poll") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (args <= 4) {
@@ -559,7 +559,7 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
@@ -636,7 +636,7 @@ client.on("message", async message => {
 
     }
     if (command === "react") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         message.channel.fetchMessages({ limit: 2 }).then(async messages => {
@@ -653,7 +653,7 @@ client.on("message", async message => {
         });
     }
     if (command === "live") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -684,7 +684,7 @@ client.on("message", async message => {
         message.channel.send(embed);
     }
     if (command === "setplatform") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -705,7 +705,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming platform has been changed to: `" + platform + "`.").then(message => message.delete(5000));
     }
     if (command === "setlink") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -722,7 +722,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your live streaming link has been changed to: `" + link + "`.").then(message => message.delete(5000));
     }
     if (command === "setdefaultgame") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -736,7 +736,7 @@ client.on("message", async message => {
         message.channel.send(":white_check_mark: Your default game has been changed to: `" + defaultGame + "`.").then(message => message.delete(5000));
     }
     if (command === "setimage") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("540291730692636672") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("540291730692636672") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
         if (!message.author.id === ("125280288799588352" || "223844912456531988" || "277930565028544512" || "211940365266059264" || "125280215688544256" || "313014412560826380")) {
@@ -767,7 +767,7 @@ client.on("message", async message => {
         message.channel.send(Embed)
     }
     if (command === "gamenightmsg") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("512043857722998785")) {
             return;
         }
         message.channel.send("Welcome to the server! :smile: \nTo get the <@&481589843294552095> role click the ':game_die:' reaction below. \nTo remove the role simply remove your reaction.").then(async function (newMessage) {
@@ -775,7 +775,7 @@ client.on("message", async message => {
         });
     }
     if (command === "move") {
-        if (!message.member.roles.has("304377036649267211") || !message.member.roles.has("512043857722998785")) {
+        if (!message.member.roles.has("304377036649267211") && !message.member.roles.has("512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
 
