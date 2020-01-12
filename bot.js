@@ -348,7 +348,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (!message.member.roles.has("&304377036649267211") || !message.member.roles.has("&512043857722998785") || message.author.id === "317018329963429889") {
+        if (!message.member.roles.has(304377036649267211) || !message.member.roles.has(512043857722998785) || message.author.id === "317018329963429889") {
             return message.reply("you don't have permission to use this command!");
         } else {
             // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
