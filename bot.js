@@ -88,6 +88,12 @@ client.on("ready", () => {
     }
 }
 
+// Role-ID's (Top > Bottom)
+// 1: &304376314129940490
+// 2: &304377036649267211
+// 3: &540291730692636672
+// Coder: &512043857722998785
+
 // RPS-Extra
 var players = [];
 var materials = [];
@@ -342,7 +348,7 @@ client.on("message", async message => {
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
     if (command === "say") {
-        if (!(message.member.roles.some(r => ["Mucho Importante Spaghetti", "Coder"].includes(r.name)) || message.author.id === "317018329963429889")) {
+        if (!(message.member.roles.some(r => ["&540291730692636672", "&512043857722998785"].includes(r.id)) || message.author.id === "317018329963429889")) {
             return message.reply("you don't have permission to use this command!");
         } else {
             // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
