@@ -559,7 +559,6 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        message.member.roles.has(adminRole.id)
         if (!message.member.roles.has("&304377036649267211") || !message.member.roles.has("&512043857722998785")) {
             return message.reply("you don't have permission to use this command!");
         }
