@@ -120,7 +120,7 @@ client.on('messageReactionAdd', (reaction, user) => {
         let messageString = message.content;
         let messageSplit = message.content.split(" ");
 
-        if (!(reactionMember.roles.has("304377036649267211") || message.member.roles.has("512043857722998785")) {
+        if (!(reactionMember.roles.has("304377036649267211") || message.member.roles.has("512043857722998785"))) {
             const embed = new Discord.RichEmbed()
 
             if (message.attachments.size > 0) { //Image
