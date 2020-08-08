@@ -565,7 +565,7 @@ client.on("message", async message => {
         }
     }
     if (command === "purge") {
-        if (!(message.member.roles.has("304377036649267211") || message.member.roles.has("512043857722998785") || message.author.id === "317018329963429889")) {
+        if (!(message.member.roles.has("304377036649267211") || message.member.roles.has("512043857722998785") || message.author.id === "125280288799588352")) {
             return message.reply("you don't have permission to use this command!");
         }
         const deleteCount = parseInt(args[0], 10);
