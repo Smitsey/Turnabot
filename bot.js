@@ -93,11 +93,12 @@ client.on('guildMemberAdd', member => {
 }
 
 // Role-ID's (Top > Bottom) [Remove "&" if add more]
-// 1: 304376314129940490 - Zellius
-// 2: 304377036649267211 - Freestylegang
-// 3: 540291730692636672 - Turnabout Player
-// 4: 665960167833206785 - Turnabout Rookie
-// 5: 512043857722998785 - Coder
+// 1: 304376314129940490 - A Very Fragile Relationship
+// 2: 304377036649267211 - Mucho Importante Spaghetti
+// 3: 540291730692636672 - Active Typewriters
+// 4: 713709548875022377 - Turnabout Member
+// 5: 665960167833206785 - Turnabout Rookie
+// 6: 512043857722998785 - Coder
 
 // RPS-Extra
 var players = [];
@@ -571,8 +572,9 @@ client.on("message", async message => {
 
         if (!deleteCount || deleteCount < 1 || deleteCount > 100)
             return message.reply("please provide a number between 1 and 100 of messages to delete.");
-
-        const fetched = await message.channel.fetchMessages({ limit: deleteCount + 1 });
+        
+        message.delete().catch(O_o => { });
+        const fetched = await message.channel.fetchMessages({ limit: deleteCount});
         message.channel.bulkDelete(fetched)
         if (deleteCount === 1) {
             message.channel.send(`:white_check_mark: Removed 1 message.`).then(message => message.delete(5000));
@@ -625,7 +627,7 @@ client.on("message", async message => {
     }
     if (command === "christmas") {
         var datum = new Date();
-        var kerst = new Date("12/24/2019");
+        var kerst = new Date("12/24/2020");
         var verschil = (kerst - datum) / 86400000;
 
         if (verschil > 0) {
