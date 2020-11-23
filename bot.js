@@ -312,14 +312,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     let oldUserChannel = oldMember.voiceChannel
 
     if (oldUserChannel === undefined || newUserChannel !== undefined) {
+        console.log("1");
         if (newUserChannel.name !== "Chillzone") {
             oldMember.removeRole("510547490660024331");
         }
         if (newUserChannel.name === "Chillzone") {
+            console.log("2");
             newMember.addRole("510547490660024331");
         }
 
     } else if (newUserChannel === undefined) {
+        console.log("3");
         oldMember.removeRole("510547490660024331");
         newMember.removeRole("510547490660024331");
     }
