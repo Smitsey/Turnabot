@@ -10,9 +10,9 @@ client.on("ready", () => {
     gamenight_channel.fetchMessage("545734893867368471"); //GameNight role Message
 });
 
-client.on('guildMemberAdd', member => {
+/*client.on('guildMemberAdd', member => {
     member.addRole("665960167833206785")
-});
+});*/
 
 // Useful functions
 {
@@ -116,7 +116,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
     let reactionMember = guild.member(user.id);
 
-    if (reaction.emoji.name === '❗') {
+    /*if (reaction.emoji.name === '❗') {
         let message = reaction.message;
         let messageString = message.content;
         let messageSplit = message.content.split(" ");
@@ -158,7 +158,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     if (reaction.emoji.name === '🎲' && reaction.message.id === "545734893867368471") {
         let role = guild.roles.find("name", "GameNight");
         reactionMember.addRole(role);
-    }
+    }*/
     if (reaction.count > 1) {
         switch (reaction.emoji.name) {
             case '1⃣':
@@ -297,14 +297,14 @@ client.on('messageReactionAdd', (reaction, user) => {
     }
 });
 
-client.on('messageReactionRemove', (reaction, user) => {
+/*client.on('messageReactionRemove', (reaction, user) => {
     let guild = client.guilds.find(guild => guild.name === "The Turnabout Players");
     let reactionMember = guild.member(user.id);
     if (reaction.emoji.name === '🎲' && reaction.message.id === "545734893867368471") {
         let role = guild.roles.find("name", "GameNight");
         reactionMember.removeRole(role);
     }
-});
+});*/
 
 // @Chillzone role when joining voicechannel 'Chillzone'
 client.on('voiceStateUpdate', (oldMember, newMember) => {
