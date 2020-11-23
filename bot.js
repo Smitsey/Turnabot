@@ -308,6 +308,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 
 // @Chillzone role when joining voicechannel 'Chillzone'
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+    console.log("voice status update");
     let newUserChannel = newMember.voiceChannel
     let oldUserChannel = oldMember.voiceChannel
 
