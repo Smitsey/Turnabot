@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const client = new Discord.Client({ disableMentions: 'everyone' });
+const client = new Discord.Client();
 const config = require("./config.json");
 const live = require("./live.js");
 
@@ -314,17 +314,17 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (oldUserChannel === undefined || newUserChannel !== undefined) {
         console.log("1");
         if (newUserChannel.name !== "Chillzone") {
-            oldMember.roles.remove("510547490660024331");
+            oldMember.roles.remove('510547490660024331');
         }
         if (newUserChannel.name === "Chillzone") {
             console.log("2");
-            newMember.roles.add("510547490660024331");
+            newMember.roles.add('510547490660024331');
         }
 
     } else if (newUserChannel === undefined) {
         console.log("3");
-        oldMember.roles.remove("510547490660024331");
-        newMember.roles.add("510547490660024331");
+        oldMember.roles.remove('510547490660024331');
+        newMember.roles.add('510547490660024331');
     }
 })
 
