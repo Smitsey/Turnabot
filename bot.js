@@ -330,6 +330,17 @@ client.on('messageReactionAdd', (reaction, user) => {
 //     }
 // })
 
+client.on("voiceStateUpdate", (oldMember, newMember) => {
+    var newUserChannel = newMember.voiceChannelID
+    var oldUserChannel = oldMember.voiceChannelID
+
+    if (newUserChannel === "304375104878542860"){
+        newMember.addRole("510547490660024331")
+    }else{
+        newMember.removeRole("510547490660024331")
+    }
+})
+
 client.on("message", async message => {
     var messageSplit = message.content.split(" ");
     var replies = ["https://gph.is/1SPmL69", "https://tenor.com/view/full-metal-jacket-who-pinged-me-gunnery-sergeant-hartman-chat-ping-pong-gif-11748348", "https://gph.is/28LBdcE", "https://gph.is/2pr2AQS", "https://gph.is/1faYQZ7", "https://gph.is/1ONkJPP", "https://gph.is/YBLP1n", "https://gph.is/2aLFgbt", "https://gph.is/1pGtWuy", "https://gph.is/2MtcbCX", "https://tenor.com/view/hit-or-miss-hit-or-miss-guess-gif-13001450", "https://tenor.com/view/dab-dance-hit-or-miss-nyan-cosplay-tik-tok-gif-12988318", "I hope you have a good reason for taggin' me.", "What's up?", "Thanks for tagging me! Now I can let everyone know how much of an awesome guy Smitsey actually is :D", "This ain't it, Chief.", "Stop tagging me human! Love ya :heart:"];
@@ -357,11 +368,6 @@ client.on("message", async message => {
         //message.channel.send(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
-    }
-
-    if (command === "drink"){
-        console.log("Hello world")
-        message.channel.send("ArE U dRuNk?")
     }
 
 
