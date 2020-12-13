@@ -911,7 +911,8 @@ client.on("message", async message => {
         
     if (message.content.includes("<@&470006403113680906>")){
         var getal = getRandomInt(0, replies.length)
-        return message.channel.send(replies[getal])
+        message.channel.send("test")
+        message.channel.send(replies[getal])
     }else{
         return;
     }
