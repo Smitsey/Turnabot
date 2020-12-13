@@ -307,27 +307,28 @@ client.on('messageReactionAdd', (reaction, user) => {
 });*/
 
 // @Chillzone role when joining voicechannel 'Chillzone'
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-    console.log("voice status update");
-    let newUserChannel = newMember.voiceChannel
-    let oldUserChannel = oldMember.voiceChannel
+// ! FIXING THIS WITH OTHER CODE, Hopefully <3 Modx
+// client.on('voiceStateUpdate', (oldMember, newMember) => {
+//     console.log("voice status update");
+//     let newUserChannel = newMember.voiceChannel
+//     let oldUserChannel = oldMember.voiceChannel
 
-    if (oldUserChannel === undefined || newUserChannel !== undefined) {
-        console.log("1");
-        if (newUserChannel.name !== "Chillzone") {
-            oldMember.roles.remove('510547490660024331');
-        }
-        if (newUserChannel.name === "Chillzone") {
-            console.log("2");
-            newMember.roles.add('510547490660024331');
-        }
+//     if (oldUserChannel === undefined || newUserChannel !== undefined) {
+//         console.log("1");
+//         if (newUserChannel.name !== "Chillzone") {
+//             oldMember.roles.remove('510547490660024331');
+//         }
+//         if (newUserChannel.name === "Chillzone") {
+//             console.log("2");
+//             newMember.roles.add('510547490660024331');
+//         }
 
-    } else if (newUserChannel === undefined) {
-        console.log("3");
-        oldMember.roles.remove('510547490660024331');
-        newMember.roles.add('510547490660024331');
-    }
-})
+//     } else if (newUserChannel === undefined) {
+//         console.log("3");
+//         oldMember.roles.remove('510547490660024331');
+//         newMember.roles.add('510547490660024331');
+//     }
+// })
 
 client.on("message", async message => {
     var messageSplit = message.content.split(" ");
@@ -357,6 +358,14 @@ client.on("message", async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
     }
+
+    if (command === "drink"){
+        console.log("Hello world")
+        message.channel.send("ArE U dRuNk?")
+    }
+
+
+
     if (command === "say") {
         if (!(message.member.roles.has("304377036649267211") || message.member.roles.has("512043857722998785") || message.author.id === "317018329963429889")) {
             return message.reply("you don't have permission to use this command!");
