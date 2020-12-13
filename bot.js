@@ -7,7 +7,6 @@ client.on("ready", () => {
     console.log("I am ready, master.");
     client.user.setActivity(".help", { type: 'PLAYING' });
     let gamenight_channel = client.channels.cache.get("481863151495938048");
-    let testingwhatever = client.channels.cache.get
     gamenight_channel.fetchMessage("545734893867368471"); //GameNight role Message
 });
 
