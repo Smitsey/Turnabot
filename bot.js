@@ -309,27 +309,39 @@ client.on('messageReactionAdd', (reaction, user) => {
 
 // @Chillzone role when joining voicechannel 'Chillzone'
 // ! FIXING THIS WITH OTHER CODE, Hopefully <3 Modx
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-    console.log("voice status update");
-    let newUserChannel = newMember.voiceChannel
-    let oldUserChannel = oldMember.voiceChannel
+// client.on('voiceStateUpdate', (oldMember, newMember) => {
+//     console.log("voice status update");
+//     let newUserChannel = newMember.voiceChannel
+//     let oldUserChannel = oldMember.voiceChannel
 
-    if (oldUserChannel === undefined || newUserChannel !== undefined) {
-        console.log("1");
-        if (newUserChannel !== "Chillzone") {
-            oldMember.removeRole('510547490660024331');
-        }
-        if (newUserChannel === "Chillzone") {
-            console.log("2");
-            newMember.addRole('510547490660024331');
-        }
+//     if (oldUserChannel === undefined || newUserChannel !== undefined) {
+//         console.log("1");
+//         if (newUserChannel !== "Chillzone") {
+//             oldMember.removeRole('510547490660024331');
+//         }
+//         if (newUserChannel === "Chillzone") {
+//             console.log("2");
+//             newMember.addRole('510547490660024331');
+//         }
 
-    } else if (newUserChannel === undefined) {
-        console.log("3");
-        oldMember.removeRole('510547490660024331');
-        newMember.removeRole('510547490660024331');
+//     } else if (newUserChannel === undefined) {
+//         console.log("3");
+//         oldMember.removeRole('510547490660024331');
+//         newMember.removeRole('510547490660024331');
+//     }
+// })
+
+client.on("voiceStateUpdate", member => {
+    var userChannel = member.voiceChannelID
+
+    if (userChannel === "304375104878542860"){
+        member.addRole("510547490660024331")
+    }
+    if (userChannel !== "304375104878542860"){
+        member.removeRole("510547490660024331")
     }
 })
+
 
 
 // client.on("message", async message => {
