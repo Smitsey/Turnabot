@@ -331,14 +331,16 @@ client.on('messageReactionAdd', (reaction, user) => {
 //     }
 // })
 
-client.on("voiceStateUpdate", member => {
-    var userChannel = member.voiceChannelID
+client.on("voiceStateUpdate", (oldMember, newMember) => {
+    var oldUserChannel = oldMember.voiceChannelID
+    var newUserChannel = newMember.voiceChannelID
 
-    if (userChannel === "304375104878542860"){
-        member.addRole("510547490660024331")
-    }else{
-        member.removeRole("510547490660024331")
+    if (newUserChannel === "304375104878542860"){
+        newMember.addRole("510547490660024331")
+    }else if (oldUserChannel === "304375104878542860"){
+        newMember.removeRole("510547490660024331")
     }
+
 })
 
 
@@ -903,3 +905,6 @@ client.on("voiceStateUpdate", member => {
 // });
 
 client.login(process.env.BOT_TOKEN);
+
+
+//https://stackoverflow.com/questions/61918331/discord-js-join-leave-voice-channel-notification-in-text-channel
