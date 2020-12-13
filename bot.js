@@ -337,7 +337,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 
     if (newUserChannel === "304375104878542860"){
         newMember.addRole("510547490660024331")
-    }else if (oldUserChannel === "304375104878542860"){
+    }else if (oldUserChannel !== "304375104878542860"){
         newMember.removeRole("510547490660024331")
     }
 
