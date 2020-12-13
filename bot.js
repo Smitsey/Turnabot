@@ -336,8 +336,7 @@ client.on("voiceStateUpdate", member => {
 
     if (userChannel === "304375104878542860"){
         member.addRole("510547490660024331")
-    }
-    if (userChannel !== "304375104878542860"){
+    }else{
         member.removeRole("510547490660024331")
     }
 })
