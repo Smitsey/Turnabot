@@ -331,10 +331,10 @@ client.on('messageReactionAdd', (reaction, user) => {
 // })
 
 client.on("voiceStateUpdate", (oldMember, newMember) => {
-    var newUserChannel = newMember.voiceChannelID
-    var oldUserChannel = oldMember.voiceChannelID
+    var newUserChannel = newMember.voiceChannel
+    var oldUserChannel = oldMember.voiceChannel
 
-    if (newUserChannel === "304375104878542860"){
+    if (newUserChannel.id === "304375104878542860"){
         newMember.addRole("510547490660024331")
     }else{
         newMember.removeRole("510547490660024331")
