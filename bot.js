@@ -6,8 +6,8 @@ const live = require("./live.js");
 client.on("ready", () => {
     console.log("I am ready, master.");
     client.user.setActivity(".help", { type: 'PLAYING' });
-    let gamenight_channel = client.channels.cache.get("481863151495938048");
-    gamenight_channel.fetchMessage("545734893867368471"); //GameNight role Message
+    // let gamenight_channel = client.channels.cache.get("481863151495938048");
+    // gamenight_channel.fetchMessage("545734893867368471"); //GameNight role Message
 });
 
 /*client.on('guildMemberAdd', member => {
@@ -15,82 +15,83 @@ client.on("ready", () => {
 });*/
 
 // Useful functions
-{
-    function capitalize_Words(str) { // Capitalize first letter of every word (f.i. "test text" > "Test Text")
-        return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-    }
-    function removeDuplicates(arr) {
-        var seen = {};
-        var ret_arr = [];
-        for (var i = 0; i < arr.length; i++) {
-            if (!(arr[i] in seen)) {
-                ret_arr.push(arr[i]);
-                seen[arr[i]] = true;
-            }
-        }
-        return ret_arr;
-    }
-    function alphabetPosition(text) { // Converts every char of string in it's indexnumber in the alphabet
-        var result = "";
-        for (var i = 0; i < text.length; i++) {
-            var code = text.toUpperCase().charCodeAt(i)
-            if (code > 64 && code < 91) result += (code - 64) + " ";
-        }
-        return result.slice(0, result.length - 1);
-    }
-    function getTime() { // Returns date and time with format: Month D, YYYY HH:MM AM/PM
-        let date = new Date();
-        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let hours = date.getHours() + 1; // +1 to make it CET
-        let minutes = date.getMinutes();
-        let dayHalf = "AM";
+//TODO UNCOMMENT
+// {
+//     function capitalize_Words(str) { // Capitalize first letter of every word (f.i. "test text" > "Test Text")
+//         return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+//     }
+//     function removeDuplicates(arr) {
+//         var seen = {};
+//         var ret_arr = [];
+//         for (var i = 0; i < arr.length; i++) {
+//             if (!(arr[i] in seen)) {
+//                 ret_arr.push(arr[i]);
+//                 seen[arr[i]] = true;
+//             }
+//         }
+//         return ret_arr;
+//     }
+//     function alphabetPosition(text) { // Converts every char of string in it's indexnumber in the alphabet
+//         var result = "";
+//         for (var i = 0; i < text.length; i++) {
+//             var code = text.toUpperCase().charCodeAt(i)
+//             if (code > 64 && code < 91) result += (code - 64) + " ";
+//         }
+//         return result.slice(0, result.length - 1);
+//     }
+//     function getTime() { // Returns date and time with format: Month D, YYYY HH:MM AM/PM
+//         let date = new Date();
+//         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//         let hours = date.getHours() + 1; // +1 to make it CET
+//         let minutes = date.getMinutes();
+//         let dayHalf = "AM";
 
-        if (hours > 11) {
-            dayHalf = "PM";
-        }
-        if (hours > 12) {
-            hours = hours - 12;
-        }
-        if (hours < 10) {
-            hours = "0" + hours;
-        }
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
+//         if (hours > 11) {
+//             dayHalf = "PM";
+//         }
+//         if (hours > 12) {
+//             hours = hours - 12;
+//         }
+//         if (hours < 10) {
+//             hours = "0" + hours;
+//         }
+//         if (minutes < 10) {
+//             minutes = "0" + minutes;
+//         }
 
-        return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hours + ":" + minutes + dayHalf;
-    }
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
-    function jurchTime() {
-        let setDate = new Date("2019-10-22T19:48:30");
-        let nowDate = new Date();
+//         return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hours + ":" + minutes + dayHalf;
+//     }
+//     function getRandomInt(min, max) {
+//         min = Math.ceil(min);
+//         max = Math.floor(max);
+//         return Math.floor(Math.random() * (max - min)) + min;
+//     }
+//     function jurchTime() {
+//         let setDate = new Date("2019-10-22T19:48:30");
+//         let nowDate = new Date();
 
-        // get total seconds between the times
-        let delta = Math.abs(setDate - nowDate) / 1000;
+//         // get total seconds between the times
+//         let delta = Math.abs(setDate - nowDate) / 1000;
 
-        // calculate (and subtract) whole days
-        let days = Math.floor(delta / 86400);
-        delta -= days * 86400;
+//         // calculate (and subtract) whole days
+//         let days = Math.floor(delta / 86400);
+//         delta -= days * 86400;
 
-        // calculate (and subtract) whole hours
-        let hours = Math.floor(delta / 3600) % 24;
-        delta -= hours * 3600;
+//         // calculate (and subtract) whole hours
+//         let hours = Math.floor(delta / 3600) % 24;
+//         delta -= hours * 3600;
 
-        // calculate (and subtract) whole minutes
-        var minutes = Math.floor(delta / 60) % 60;
-        delta -= minutes * 60;
+//         // calculate (and subtract) whole minutes
+//         var minutes = Math.floor(delta / 60) % 60;
+//         delta -= minutes * 60;
 
-        // what's left is seconds
-        let seconds = Math.round(delta % 60);  // in theory the modulus is not required
+//         // what's left is seconds
+//         let seconds = Math.round(delta % 60);  // in theory the modulus is not required
 
-        console.log(days);
-        return "*It took <@317018329963429889> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!*";
-    }
-}
+//         console.log(days);
+//         return "*It took <@317018329963429889> " + days + " days, " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds to find this, enjoy!*";
+//     }
+// }
 
 // Role-ID's (Top > Bottom) [Remove "&" if add more]
 // 1: 304376314129940490 - A Very Fragile Relationship
@@ -315,10 +316,10 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     if (oldUserChannel === undefined || newUserChannel !== undefined) {
         console.log("1");
-        if (newUserChannel.name !== "Chillzone") {
+        if (newUserChannel !== "Chillzone") {
             oldMember.removeRole('510547490660024331');
         }
-        if (newUserChannel.name === "Chillzone") {
+        if (newUserChannel === "Chillzone") {
             console.log("2");
             newMember.addRole('510547490660024331');
         }
