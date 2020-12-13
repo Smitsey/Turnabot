@@ -15,7 +15,6 @@ client.on("ready", () => {
 });*/
 
 // Useful functions
-//TODO UNCOMMENT
 {
     function capitalize_Words(str) { // Capitalize first letter of every word (f.i. "test text" > "Test Text")
         return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
@@ -330,10 +329,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         newMember.removeRole('510547490660024331');
     }
 })
-
-
-
-
 
 client.on("message", async message => {
     var messageSplit = message.content.split(" ");
