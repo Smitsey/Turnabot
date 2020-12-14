@@ -919,8 +919,7 @@ client.on("message", async message => {
         return;
     }
 
-    // Commands inside this if statement
-    if (message.content.startsWith(config.prefix)){
+    //? Commands
         const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
         const command = args.shift().toLowerCase();
         console.log(command)
@@ -935,8 +934,6 @@ client.on("message", async message => {
             message.channel.send(respons.data.data.url)
             })
         }
-
-    }
         
 })
 
