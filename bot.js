@@ -927,6 +927,18 @@ client.on("message", async message => {
             m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
         }
 
+        if (command === "say"){
+            if (!(message.member.roles.cache.has("304377036649267211") || message.member.roles.cache.has("512043857722998785") || message.author.id === "317018329963429889")){
+                return message.reply("You don't have the required **permission** to use this command!")
+            }else{
+                const sayMessage = args.join(" ")
+                message.delete()
+                message.channel.send(sayMessage)
+                console.log(`${message.author.username} used Turnabot to send the message: ${sayMessage}`)
+                }
+        }
+
+
         if (command === "randomgif"){
             Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
             message.channel.send(respons.data.data.url)
