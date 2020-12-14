@@ -917,11 +917,12 @@ client.on("message", async message => {
     }
 
 
-    if (message.content.startsWith(".randomgif")){
-        var url = Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
+    if (message.content === "randomgif"){
+        console.log("testing")
+        Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
             message.channel.send(respons.data.data.url)
         })
-        console.log(url)
+        console.log("testing after")
     }
         
 })
