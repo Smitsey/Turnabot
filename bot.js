@@ -915,12 +915,10 @@ client.on("message", async message => {
     if (message.content.includes("<@&470006403113680906>") || message.content.includes("<@!470006403113680906>")){
         var getal = getRandomInt(0, replies.length)
         message.channel.send(replies[getal])
-    }else{
-        return;
     }
 
     //? Commands
-        const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
+        const args = message.content.slice(config.prefix.length).trim().split(" "); //anything but command. ex: !test Hello World, args = [Hello,World]
         const command = args.shift().toLowerCase();
         console.log(command)
         
