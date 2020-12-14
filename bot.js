@@ -353,6 +353,7 @@ var emojis = [];
 //         }
 //     }
 
+        // ?Fixed
 //     const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
 //     const command = args.shift().toLowerCase();
 
@@ -363,6 +364,7 @@ var emojis = [];
 //         const m = await message.channel.send("Ping?");
 //         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
 //     }
+        //?Fixed
 //     if (command === "say") {
 //         if (!(message.member.roles.has("304377036649267211") || message.member.roles.has("512043857722998785") || message.author.id === "317018329963429889")) {
 //             return message.reply("you don't have permission to use this command!");
@@ -942,6 +944,16 @@ client.on("message", async message => {
         if (command === "randomgif"){
             Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
             message.channel.send(respons.data.data.url)
+            })
+        }
+
+        if (command === "poll"){
+            const content = message.content.replace(".poll ", "")
+            var poll = message.channel.send(`:bar_chart: **${content}**`)
+            poll.then(async message => {
+                await message.react("👍🏽")
+                await message.react("👎🏽")
+                await message.react("🚀")
             })
         }
         
