@@ -923,22 +923,21 @@ client.on("message", async message => {
     if (message.content.startsWith(config.prefix)){
         const args = message.content.slice(config.prefix.length).trim().split(/ +/g); //anything but command. ex: !test Hello World, args = [Hello,World]
         const command = args.shift().toLowerCase();
+        console.log(command)
         
         if (command === "ping"){
             const m = await message.channel.send("Ping?")
             m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
         }
 
+        if (command === "randomgif"){
+            Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
+            message.channel.send(respons.data.data.url)
+            })
+        }
+
     }
         
-})
-
-client.on("message", message => {
-    if (message.content === ".randomgif"){
-        Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
-            message.channel.send(respons.data.data.url)
-        })
-    }
 })
 
 
