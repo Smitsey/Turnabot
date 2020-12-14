@@ -928,7 +928,7 @@ client.on("message", async message => {
         }
 
         if (command === "say"){
-            if (!(message.member.roles.cache.has("304377036649267211") || message.member.roles.cache.has("512043857722998785") || message.author.id === "317018329963429889")){
+            if (!(message.member.roles.cache.has("304377036649267211") || message.member.roles.cache.has("512043857722998785") || message.author.id === "317018329963429889" || message.author.id === "125280215688544256")){
                 return message.reply("You don't have the required **permission** to use this command!")
             }else{
                 const sayMessage = args.join(" ")
