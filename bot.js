@@ -1,3 +1,4 @@
+const { default: Axios } = require("axios");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -917,14 +918,16 @@ client.on("message", async message => {
     }
 
 
-    if (message.content === "randomgif"){
-        console.log("testing")
+    
+        
+})
+
+client.on("message", message => {
+    if (message.content === ".randomgif"){
         Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
             message.channel.send(respons.data.data.url)
         })
-        console.log("testing after")
     }
-        
 })
 
 
