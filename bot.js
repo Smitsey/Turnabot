@@ -948,13 +948,17 @@ client.on("message", async message => {
         }
 
         if (command === "poll"){
-            const content = message.content.replace(".poll ", "")
-            var poll = message.channel.send(`:bar_chart: **${content}**`)
-            poll.then(async message => {
+            if (!(message.member.roles.cache.has("304377036649267211") || message.member.roles.cache.has("713709548875022377"))){
+                return message.reply("You don't have the required **permission** to use this command!")
+            }else{
+                const content = message.content.replace(".poll ", "")
+                var poll = message.channel.send(`:bar_chart: **${content}**`)
+                poll.then(async message => {
                 await message.react("👍🏽")
                 await message.react("👎🏽")
                 await message.react("🚀")
             })
+            }
         }
         
 })
