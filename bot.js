@@ -378,6 +378,7 @@ var emojis = [];
 //             console.log(`${message.author.username} used Turnabot to send the message: ${sayMessage}.`);
 //         }
 //     }
+        //? Implemented My own method
 //     if (command === "poll") {
 //         if (!(message.member.roles.has("304377036649267211") || message.member.roles.has("540291730692636672") || message.member.roles.has("512043857722998785"))) {
 //             return message.reply("you don't have permission to use this command!");
@@ -942,8 +943,8 @@ client.on("message", async message => {
 
 
         if (command === "randomgif"){
-            Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((respons) =>{
-            message.channel.send(respons.data.data.url)
+            Axios.get("https://api.giphy.com/v1/gifs/random?api_key=QOPxGH9GvJ34jJbGAznUjucwIhYBt0Bb").then((response) =>{
+            message.channel.send(response.data.data.url)
             })
         }
 
@@ -959,6 +960,22 @@ client.on("message", async message => {
                 await message.react("🚀")
             })
             }
+        }
+
+        if (command === "games"){
+            const embed = new Discord.MessageEmbed()
+                    .setColor([25,119,173])
+                    .setAuthor("List of Games", "https://i.imgur.com/x9vHs9f.png")
+                    .addField("\u200b",
+                    "[Skribbl.io](https://skribbl.io)\nOne person is drawing 1 of the 3 options they get, the others try to guess what the drawer is drawing.\n\n" +
+                    "[Cards Against Humanity](https://pretendyoure.xyz/zy/)\nEveryone receives a set of white cards, there will be 1 black card drawn with a blank line, which people have to fill in with their set of white cards. One person will be the judge to decide the winner.\n\n" +
+                    "[No Hope For Us](http://nohopefor.us/game)\nZombie survival game where you have to use your arrowkeys to make a combination, required combinations to kill a zombie are shown above their heads.\n\n" +
+                    "[HaxBall](https://www.haxball.com/)\n2D physics based football game with top/down view.\n\n" +
+                    "\u200b")
+                    .setFooter("TTP")
+                    .setTimestamp()
+                    .setURL("https://discord.js.org/#/docs/main/stable/class/MessageEmbed")
+                message.channel.send({embed});
         }
         
 })
